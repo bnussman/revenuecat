@@ -1,0 +1,32 @@
+{
+  "name": "@banksnussman/revenuecat",
+  "type": "module",
+  "version": "0.0.2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bnussman/revenuecat"
+  },
+  "scripts": {
+    "generate": "openapi-ts",
+    "build": "tsdown"
+  },
+  "exports": {
+    "./v1": {
+      "import": "./dist/v1/index.mjs",
+      "types": "./dist/v1/index.d.mts"
+    },
+    "./v2": {
+      "import": "./dist/v2/index.mjs",
+      "types": "./dist/v2/index.d.mts"
+    }
+  },
+  "devDependencies": {
+    "@hey-api/openapi-ts": "0.99.0",
+    "@types/bun": "latest",
+    "tsdown": "^0.22.14",
+    "typescript": "^6"
+  },
+  "files": [
+    "dist"
+  ]
+}
