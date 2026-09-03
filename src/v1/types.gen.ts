@@ -11,11 +11,11 @@ export type Error = {
     /**
      * The error message.
      */
-    message?: string;
+    message: string;
     /**
      * A numeric error code.
      */
-    code?: number;
+    code: number;
 };
 
 /**
@@ -25,31 +25,31 @@ export type Offerings = {
     /**
      * The identifier of the current Offering for this Customer. [Targeting](/docs/tools/targeting), [Offering overrides](#tag/offerings/operation/override-offering), and [Experiments](/docs/tools/experiments-v1) affect this identifier depending on the App User ID.
      */
-    current_offering_id?: string;
+    current_offering_id: string;
     /**
      * A list of available Offerings.
      */
-    offerings?: Array<{
+    offerings: Array<{
         /**
          * The Offering's description.
          */
-        description?: string;
+        description: string;
         /**
          * The Offering's identifier.
          */
-        identifier?: string;
+        identifier: string;
         /**
          * The Packages of this Offering.
          */
-        packages?: Array<{
+        packages: Array<{
             /**
              * The package's identifier. If you used one of RevenueCat's default identifiers, it will be prefixed by `$rc_`.
              */
-            identifier?: string;
+            identifier: string;
             /**
              * The identifier of the product in the store. This should be used to fetch the product from Apple, Google, Amazon, or Stripe depending on the platform. This field will be populated only for the current app based on the API key used and the `X-Platform` header.
              */
-            platform_product_identifier?: string;
+            platform_product_identifier: string;
         }>;
     }>;
 };
@@ -61,47 +61,47 @@ export type Subscriber = {
     /**
      * Date of the request in ISO 8601 format.
      */
-    request_date?: string;
+    request_date: string;
     /**
      * Date of the request in milliseconds since Epoch.
      */
-    request_date_ms?: number;
+    request_date_ms: number;
     /**
      * Information about the Customer.
      */
-    subscriber?: {
+    subscriber: {
         /**
          * Dictionary of the entitlements of this Customer (including any expired entitlements).
          */
-        entitlements?: {
+        entitlements: {
             [key: string]: {
                 /**
                  * Date when the entitlement expires / expired (in ISO 8601 format, may be in the past).
                  */
-                expires_date?: string;
+                expires_date: string;
                 /**
                  * Date when any potential grace period of the entitlement expires / expired (in ISO 8601 format, may be in the past). `null` if the Customer has never been in a grace period.
                  */
-                grace_period_expires_date?: string | null;
+                grace_period_expires_date: string | null;
                 /**
                  * The identifier of the product that is responsible for this entitlement being granted.<br><br>Please note: in some cases, if there are problems with validating the purchase with the store, the correct product identifier might temporarily be unavailable.
                  *
                  */
-                product_identifier?: string;
+                product_identifier: string;
                 /**
                  * Time of the last purchase or renewal of the product that grants this entitlement (in ISO 8601 format).
                  */
-                purchase_date?: string;
+                purchase_date: string;
             };
         };
         /**
          * The ISO 8601 datetime string corresponding to when the Customer was first seen by RevenueCat.
          */
-        first_seen?: string;
+        first_seen: string;
         /**
          * The ISO 8601 datetime string corresponding to when the Customer was last seen by RevenueCat.
          */
-        last_seen?: string;
+        last_seen: string;
         /**
          * URL to manage the active subscription of the Customer. If the Customer has an active iOS subscription, this will point to the App Store, if the Customer has an active Play Store subscription it will point there.
          *
@@ -112,24 +112,24 @@ export type Subscriber = {
          * - If the request was made on a different OS or the OS was not included in the X-Platform header, this will return the URL for the store of the subscription with the farthest future expiration date.
          *
          */
-        management_url?: string;
+        management_url: string;
         /**
          * Non-subscription purchases of the Customer, keyed by the product identifier.
          */
-        non_subscriptions?: {
+        non_subscriptions: {
             [key: string]: Array<{
                 /**
                  * A unique ID of the purchase.
                  */
-                id?: string;
+                id: string;
                 /**
                  * Whether or not the purchase was made in sandbox mode.
                  */
-                is_sandbox?: boolean;
+                is_sandbox: boolean;
                 /**
                  * Date of the purchase (in ISO 8601 format).
                  */
-                purchase_date?: string;
+                purchase_date: string;
                 /**
                  * Identifier of the store of the purchase:
                  * - `app_store`: The product was purchased through Apple App Store.
@@ -139,78 +139,78 @@ export type Subscriber = {
                  * - `stripe`: The product was purchased through Stripe.
                  *
                  */
-                store?: string;
+                store: string;
             }>;
         };
         /**
          * The App User ID under which this Customer was first known to RevenueCat.
          */
-        original_app_user_id?: string;
+        original_app_user_id: string;
         /**
          * *Only available on iOS*. This will be `null` until an iOS receipt is sent for the Customer. After a receipt has been sent, it will indicate the first App Store version of your app that the Customer installed.
          */
-        original_application_version?: string;
+        original_application_version: string;
         /**
          * **Only available on iOS**. The date that the app was first purchased/downloaded by the Customer. Will be `null` if no receipt is recorded for the Customer. Useful for [Migrating Subscriptions](/docs/migrating-to-revenuecat/migrating-existing-subscriptions).
          */
-        original_purchase_date?: string;
+        original_purchase_date: string;
         /**
          * @deprecated
          */
-        other_purchases?: {
+        other_purchases: {
             [key: string]: unknown;
         };
         /**
          * A dictionary of any Attributes set on this Customer. **Only included in responses to requests made with a secret API key**.
          */
-        subscriber_attributes?: {
+        subscriber_attributes: {
             [key: string]: {
                 /**
                  * The value of the attribute.
                  */
-                value?: string;
+                value: string;
                 /**
                  * The time that the Attribut was last updated, in milliseconds since Epoch.
                  */
-                updated_at_ms?: number;
+                updated_at_ms: number;
             };
         };
         /**
          * Subscription purchases of the Customer, keyed by the product identifier.
          */
-        subscriptions?: {
+        subscriptions: {
             [key: string]: {
                 /**
                  * Date when the subscription will automatically resume after being paused (in ISO 8601 format). Google Play only.
                  */
-                auto_resume_date?: string;
+                auto_resume_date: string;
                 /**
                  * Date when RevenueCat detected any billing issues with this subscription (in ISO 8601 format). If and when the billing issue gets resolved, this field is set to `null`. Note the subscription may still be active, check the `expires_date` attribute.
                  */
-                billing_issues_detected_at?: string;
+                billing_issues_detected_at: string;
                 /**
                  * Date when the subscription expires/expired (in ISO 8601 format).
                  */
-                expires_date?: string;
+                expires_date: string;
                 /**
                  * Date when any grace period for this subscription expires/expired (in ISO 8601 format). `null` if the Customer has never been in a grace period.
                  */
-                grace_period_expires_date?: string;
+                grace_period_expires_date: string;
                 /**
                  * Whether or not the purchase was made in sandbox mode.
                  */
-                is_sandbox?: boolean;
+                is_sandbox: boolean;
                 /**
                  * Date when this subscription first started (in ISO 8601 format). This property does not update with renewals. On iOS, this property also does not update for product changes within a subscription group or resubscriptions by lapsed subscribers.
                  */
-                original_purchase_date?: string;
+                original_purchase_date: string;
                 /**
                  * How the Customer received access to this subscription:
                  * - `PURCHASED`: The Customer purchased the product.
                  * - `FAMILY_SHARED`: The Customer has access to the product via their family.
                  *
                  */
-                ownership_type?: 'PURCHASED' | 'FAMILY_SHARED';
+                ownership_type: 'PURCHASED' | 'FAMILY_SHARED';
                 /**
                  * Type of the current subscription period_type:
                  * - `normal`: The product is in a normal period (default)
@@ -218,15 +218,15 @@ export type Subscriber = {
                  * - `intro`: The product is in an introductory pricing period
                  *
                  */
-                period_type?: 'normal' | 'trial' | 'intro';
+                period_type: 'normal' | 'trial' | 'intro';
                 /**
                  * Date when the last subscription period started (in ISO 8601 format).
                  */
-                purchase_date?: string;
+                purchase_date: string;
                 /**
                  * Date when RevenueCat detected a refund of this subscription.
                  */
-                refunded_at?: string;
+                refunded_at: string;
                 /**
                  * Identifier of the store of the purchase:
                  * - `app_store`: The product was purchased through Apple App Store.
@@ -237,11 +237,11 @@ export type Subscriber = {
                  * - `promotional`: The product was [granted via RevenueCat](#tag/entitlements/operation/grant-a-promotional-entitlement).
                  *
                  */
-                store?: string;
+                store: string;
                 /**
                  * Date when RevenueCat detected that auto-renewal was turned off for this subsription (in ISO 8601 format). Note the subscription may still be active, check the `expires_date` attribute.
                  */
-                unsubscribe_detected_at?: string;
+                unsubscribe_detected_at: string;
             };
         };
     };
@@ -415,11 +415,11 @@ export type SubscribersattributionData = {
             /**
              * The idfa from AdSupport on iOS. (iOS Only)
              */
-            rc_idfa?: string;
+            rc_idfa: string;
             /**
              * The Google Play Services Advertising identifier. (Android Only)
              */
-            rc_gps_adid?: string;
+            rc_gps_adid: string;
         };
         /**
          * The attribution network the data is coming from:
@@ -459,19 +459,19 @@ export type GrantAPromotionalEntitlementData = {
         /**
          * A Unix epoch in milliseconds for when the entitlement should expire. The entitlement will always be granted immediately. If not provided then `duration` must be provided.
          */
-        end_time_ms?: number;
+        end_time_ms: number;
         /**
          * How long of a duration to grant the entitlement for.  If not provided then `end_time_ms` must be provided.
          *
          * @deprecated
          */
-        duration?: 'daily' | 'three_day' | 'weekly' | 'two_week' | 'monthly' | 'two_month' | 'three_month' | 'six_month' | 'yearly' | 'lifetime';
+        duration: 'daily' | 'three_day' | 'weekly' | 'two_week' | 'monthly' | 'two_month' | 'three_month' | 'six_month' | 'yearly' | 'lifetime';
         /**
          * A Unix epoch in milliseconds used to determine the expiration date, by adding `duration` to `start_time_ms`. Regardless of what `start_time_ms` is set to, the entitlement will always be granted immediately. If `start_time_ms` is not provided, the `duration` will be added to the current time to determine the expiration date.
          *
          * @deprecated
          */
-        start_time_ms?: number;
+        start_time_ms: number;
     };
     path: {
         /**
@@ -557,7 +557,7 @@ export type RevokeAGoogleSubscriptionResponse = RevokeAGoogleSubscriptionRespons
 
 export type UpdateSubscriberAttributesData = {
     body?: {
-        attributes?: {
+        attributes: {
             /**
              * Mapping of keys to attribute values.
              */
@@ -588,11 +588,11 @@ export type UpdateSubscriberAttributesErrors = {
      * 400
      */
     400: {
-        code?: number;
-        message?: string;
-        attribute_errors?: Array<{
-            key_name?: string;
-            message?: string;
+        code: number;
+        message: string;
+        attribute_errors: Array<{
+            key_name: string;
+            message: string;
         }>;
     };
 };
@@ -724,8 +724,8 @@ export type GetOfferingsErrors = {
      * 403
      */
     403: {
-        code?: number;
-        message?: string;
+        code: number;
+        message: string;
     };
 };
 
