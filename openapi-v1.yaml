@@ -1149,14 +1149,34 @@ components:
                       type: string
                       example: cadba0c81b
                       description: A unique ID of the purchase.
+                    display_name:
+                      type: string
+                      nullable: true
+                      example: my-thing
+                      description: The display name of the product as configured in the RevenueCat dashboard.
                     is_sandbox:
                       type: boolean
                       description: Whether or not the purchase was made in sandbox mode.
                       example: false
+                    price:
+                      type: object
+                      properties:
+                        amount:
+                          type: number
+                          example: 0.99
+                          description: The price of the product
+                        currency:
+                          type: string
+                          example: USD
+                          description: The currency code of the currency
                     purchase_date:
                       type: string
                       example: '2019-04-05T21:52:45Z'
                       description: Date of the purchase (in ISO 8601 format).
+                    store_transaction_id:
+                      type: string
+                      example: 180003684298550
+                      description: The identifier associated with the purchase in the underlying store.
                     store:
                       type: string
                       example: app_store
